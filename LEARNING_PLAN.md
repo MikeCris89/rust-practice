@@ -21,16 +21,18 @@ React remains a useful reference for the client/server boundary. Backend shared 
 
 ## Current position
 
-- Lessons 1 and 2 implementation exercises are complete. Rust and Git are initialized; there are no third-party dependencies.
-- `src/main.rs` contains the two startup messages, `species`, `confidence: u8 = 92`, and `confirmed: bool = false`, followed by formatted output including the corrected `%` suffix. This source has been reviewed.
-- You reported successful output for lesson 2. The lesson 1 run and formatting check were also reported as passing. A separate lesson 2 formatting result was not supplied; commands were not rerun during review.
-- Next lesson: [lesson 3: functions and return values](lessons/03-functions.md). Its exercise has not been implemented.
+- Lessons 1 through 4 implementation exercises are complete. Rust and Git are initialized; there are no third-party dependencies.
+- `src/main.rs` defines a struct named `Detections` with `species: String`, `confidence: u8`, and `confirmed: bool`. `main` constructs one instance, calls `is_high_confidence(detection.confidence)`, and prints its fields. The original species, confidence of 92, and false confirmation are preserved. This source has been reviewed. The usual name for a type representing one detection would be singular `Detection`; no rename was made by the tutor.
+- You reported all lesson 3 checks passing, including formatting after the earlier failure. You said lesson 4 is done, but have not supplied its run/formatting results or answers to its two code-reading questions. The tutor reviewed the source without running it. Struct implementation is demonstrated; the lesson 4 verification and explanation remain to be confirmed.
+- You identified the return type and explained that a semicolon would cause the body to return `()` instead of the comparison value. Local type inference follows the initializer's type: `is_high` is a `bool` because the called function declares `-> bool`, regardless of whether it returns true or false.
+- Next lesson: [lesson 5: enums and match](lessons/05-enums.md). The document is ready; its exercise has not been implemented.
 
 ## Handoff for the next chat
 
-- Start at lesson 3, reading the current source before guiding the exercise. Let the user write the function; give hints before solutions. Do not restart setup or implement later milestones.
+- Start lesson 5 with the `ReviewStatus` enum definition, then guide replacing `confirmed` with `status` and matching it to a label. Let the user write the code, one small exercise at a time. Revisit lesson 4's check results and its definition-versus-construction and helper-argument questions naturally; do not assume they were answered.
 - Use TypeScript/Next.js/React/Express comparisons by default. The user asks short conceptual questions as they work; explain unfamiliar syntax before expecting them to use it.
 - Concepts already discussed: entry points, Cargo versus npm, macros (`println!`, `vec!`), `format!` versus JS template literals, immutable bindings, type annotations, semicolons and final expressions, and a high-level introduction to ownership versus garbage collection. Exposure does not imply mastery; ownership has not been practiced.
+- Structs versus TypeScript types/classes, `String` versus `&str`, `impl`/`&self` methods, and top-level definitions versus modules were explained. Struct construction and field access are demonstrated in source; methods, modules, moves, and explicit borrows have not been practiced.
 - The user predicted that 300 would not fit a `u8` but was unsure whether it could be saved incorrectly. We explained that the literal is rejected at compile time, that `u8` permits 0 through 255, and that the app's 0 through 100 rule needs separate validation. That understanding has not yet been reassessed.
 - The manifest/lockfile analogy and macro behavior have been explained; the remaining lesson 1 explanation checkbox can be revisited naturally, without blocking lesson 3 on a full recap.
 
@@ -47,10 +49,10 @@ Verify: `cargo run` prints your message; `cargo fmt --check` succeeds. No test n
 ### 2. Represent a detection
 
 - [x] Represent one detection with variables and formatted output (lesson 2).
-- [ ] Introduce a function with typed parameters and a return value (lesson 3).
-- [ ] Group a detection's fields in a struct (a later lesson).
+- [x] Introduce a function with typed parameters and a return value (lesson 3); implementation and explanation reviewed, passing checks reported by the user.
+- [x] Group a detection's fields in a struct (lesson 4); implementation reviewed, check results and code-reading answers pending.
 - [ ] Add source/status enums and three mock detections in a `Vec`.
-- [ ] Use `match` to describe review status.
+- [ ] Use `match` to describe review status (lesson 5).
 - [ ] Read `String`, `&str`, `&Detection`, and `&mut Detection`; explain owned data versus borrowed access.
 
 Verify: print all three detections, then print them again without rebuilding or cloning the collection. Explain why iteration does or does not consume it.

@@ -8,13 +8,11 @@ You already know how to put a decision in a function:
 
 ```ts
 function isEven(value: number): boolean {
-  return value % 2 === 0;
+	return value % 2 === 0;
 }
 
 const even = isEven(4);
 ```
-
-The equivalent Rust example is:
 
 ```rust
 fn is_even(value: u8) -> bool {
@@ -27,13 +25,13 @@ let even = is_even(4);
 
 Here `%` is the remainder operator in both languages. Compare the function syntax:
 
-| TypeScript | Rust | Meaning |
-| --- | --- | --- |
-| `function` | `fn` | Declare a function |
-| `value: number` | `value: u8` | A named parameter with a type; Rust's numeric type is more specific |
-| `: boolean` after parameters | `-> bool` | Declare the return type |
-| `return expression;` | A final `expression` without `;` | Return a value from the function body |
-| `isEven(4)` | `is_even(4)` | Call a regular function; no macro `!` |
+| TypeScript                   | Rust                             | Meaning                                                             |
+| ---------------------------- | -------------------------------- | ------------------------------------------------------------------- |
+| `function`                   | `fn`                             | Declare a function                                                  |
+| `value: number`              | `value: u8`                      | A named parameter with a type; Rust's numeric type is more specific |
+| `: boolean` after parameters | `-> bool`                        | Declare the return type                                             |
+| `return expression;`         | A final `expression` without `;` | Return a value from the function body                               |
+| `isEven(4)`                  | `is_even(4)`                     | Call a regular function; no macro `!`                               |
 
 Rust also supports `return expression;`, which is useful for early returns. Practice the final-expression style here because it is common in Rust code.
 
@@ -63,4 +61,4 @@ Share your function, its call in `main`, and your results. Answer these two ques
 1. What does `-> bool` promise to the caller?
 2. What would adding `;` to your function's final comparison change?
 
-Next, after review: group related detection fields into a struct, using a TypeScript object type as the reference point.
+Next, after review: [lesson 4: structs](04-structs.md), using a TypeScript object type as the reference point.

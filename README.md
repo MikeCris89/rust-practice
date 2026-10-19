@@ -65,6 +65,6 @@ You write the application code. I explain one concept, give a small task, review
 
 Your starting point is TypeScript, Next.js, React, and Express. Lessons will build on that knowledge: typed objects and unions for data modeling, array methods for filtering, and Express handlers or Next.js Route Handlers for HTTP. Each comparison will also explain the Rust-specific difference, especially ownership, borrowing, explicit error values, and compilation. We will spend time on those differences rather than reteach general programming basics.
 
-Lessons 1 and 2 are complete; continue with [lesson 3: functions and return values](lessons/03-functions.md). [The learning plan](LEARNING_PLAN.md) records current progress, verification, and the handoff for a new chat. [AGENTS.md](AGENTS.md) preserves the tutoring approach. For initial setup reference, see [lesson 1](lessons/01-setup.md).
+The lesson 4 struct implementation has been reviewed; continue with [lesson 5: enums and match](lessons/05-enums.md). [The learning plan](LEARNING_PLAN.md) records current progress, verification, and the handoff for a new chat. [AGENTS.md](AGENTS.md) preserves the tutoring approach. For initial setup reference, see [lesson 1](lessons/01-setup.md).
 
 Version one is complete when you can list/filter/review mock detections through HTTP, get consistent summary counts, handle invalid input without crashing, and explain the path from a request to its response.
