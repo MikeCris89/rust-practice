@@ -5,15 +5,21 @@ fn main() {
     let detection = Detections {
         species: String::from("Japanese knotweed"),
         confidence: 92,
-        confirmed: false,
+        status: ReviewStatus::Pending,
     };
 
     let is_high = is_high_confidence(detection.confidence);
 
+    let status_label = match detection.status {
+        ReviewStatus::Pending => "Pending",
+        ReviewStatus::Confirmed => "Confirmed",
+        ReviewStatus::Dismissed => "Dismissed",
+    };
+
     println!("Species: {}", detection.species);
     println!("Confidence: {}%", detection.confidence);
     println!("High Confidence: {}", is_high);
-    println!("Confirmed: {}", detection.confirmed);
+    println!("Review Status: {}", status_label);
 }
 
 fn is_high_confidence(confidence: u8) -> bool {
@@ -23,5 +29,11 @@ fn is_high_confidence(confidence: u8) -> bool {
 struct Detections {
     species: String,
     confidence: u8,
-    confirmed: bool,
+    status: ReviewStatus,
+}
+
+enum ReviewStatus {
+    Pending,
+    Confirmed,
+    Dismissed,
 }
