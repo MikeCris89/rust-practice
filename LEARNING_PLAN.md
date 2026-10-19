@@ -21,15 +21,18 @@ React remains a useful reference for the client/server boundary. Backend shared 
 
 ## Current position
 
-- Lessons 1 through 4 implementation exercises are complete. Rust and Git are initialized; there are no third-party dependencies.
-- `src/main.rs` defines a struct named `Detections` with `species: String`, `confidence: u8`, and `confirmed: bool`. `main` constructs one instance, calls `is_high_confidence(detection.confidence)`, and prints its fields. The original species, confidence of 92, and false confirmation are preserved. This source has been reviewed. The usual name for a type representing one detection would be singular `Detection`; no rename was made by the tutor.
+- Lessons 1 through 5 implementation exercises are complete. Rust and Git are initialized; there are no third-party dependencies.
+- `src/main.rs` defines `Detections` with `species: String`, `confidence: u8`, and `status: ReviewStatus`. The enum has Pending, Confirmed, and Dismissed variants. `main` constructs one pending detection, calls `is_high_confidence(detection.confidence)`, matches every status variant to a string label, and prints the fields and label. This source has been reviewed; confidence remains 92. The usual name for a type representing one detection would be singular `Detection`; no rename was made by the tutor.
 - You reported all lesson 3 checks passing, including formatting after the earlier failure. You said lesson 4 is done, but have not supplied its run/formatting results or answers to its two code-reading questions. The tutor reviewed the source without running it. Struct implementation is demonstrated; the lesson 4 verification and explanation remain to be confirmed.
 - You identified the return type and explained that a semicolon would cause the body to return `()` instead of the comparison value. Local type inference follows the initializer's type: `is_high` is a `bool` because the called function declares `-> bool`, regardless of whether it returns true or false.
-- Next lesson: [lesson 5: enums and match](lessons/05-enums.md). The document is ready; its exercise has not been implemented.
+- You said lesson 5 is done. The tutor reviewed its implementation and ran `cargo check --bin fieldwatch` and `cargo fmt --check` successfully before committing. The compiler warns that Confirmed and Dismissed are never constructed; all match arms are present. Runtime/status-case results remain unreported and were not rerun by the tutor.
+- You correctly predicted a compile-time error for a missing match arm and identified the incompatible types when one arm returns an integer instead of a string. We clarified that `ReviewStatus::Pending` is already a complete enum value, while `match` computes a separate label without changing the status. You reported understanding this explanation. `Display`, `Debug`, `#[derive(Debug)]`, and formatting versus value conversion were explained; no formatting traits have been implemented or practiced.
+- Next lesson: [lesson 6: collections and borrowed iteration](lessons/06-collections.md). Its document is ready; no collection or loop has been implemented. Source enums remain a later step.
 
 ## Handoff for the next chat
 
-- Start lesson 5 with the `ReviewStatus` enum definition, then guide replacing `confirmed` with `status` and matching it to a label. Let the user write the code, one small exercise at a time. Revisit lesson 4's check results and its definition-versus-construction and helper-argument questions naturally; do not assume they were answered.
+- Resume at lesson 6's first exercise: let the user place the existing detection plus two new values in a vector and print its length. Review that step before introducing borrowed loops. Explain moves and shared references using the lesson's examples before asking the user to apply them. Do not implement the exercise or add later milestones.
+- The user requests harder, Rust-specific questions rather than conventional coding/design questions. Favor reasoning about compiler checks, expression types, exhaustive matches, and later ownership/borrowing; keep questions within explained concepts. Lesson 4's verification results and code-reading answers remain unreported; do not turn them into a generic recap that blocks the current question.
 - Use TypeScript/Next.js/React/Express comparisons by default. The user asks short conceptual questions as they work; explain unfamiliar syntax before expecting them to use it.
 - Concepts already discussed: entry points, Cargo versus npm, macros (`println!`, `vec!`), `format!` versus JS template literals, immutable bindings, type annotations, semicolons and final expressions, and a high-level introduction to ownership versus garbage collection. Exposure does not imply mastery; ownership has not been practiced.
 - Structs versus TypeScript types/classes, `String` versus `&str`, `impl`/`&self` methods, and top-level definitions versus modules were explained. Struct construction and field access are demonstrated in source; methods, modules, moves, and explicit borrows have not been practiced.
@@ -52,7 +55,7 @@ Verify: `cargo run` prints your message; `cargo fmt --check` succeeds. No test n
 - [x] Introduce a function with typed parameters and a return value (lesson 3); implementation and explanation reviewed, passing checks reported by the user.
 - [x] Group a detection's fields in a struct (lesson 4); implementation reviewed, check results and code-reading answers pending.
 - [ ] Add source/status enums and three mock detections in a `Vec`.
-- [ ] Use `match` to describe review status (lesson 5).
+- [x] Use `match` to describe review status (lesson 5); implementation reviewed, enum-value versus label explanation acknowledged, compile and formatting checks observed; runtime/status-case checks unreported.
 - [ ] Read `String`, `&str`, `&Detection`, and `&mut Detection`; explain owned data versus borrowed access.
 
 Verify: print all three detections, then print them again without rebuilding or cloning the collection. Explain why iteration does or does not consume it.

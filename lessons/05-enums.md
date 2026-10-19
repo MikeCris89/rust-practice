@@ -95,3 +95,5 @@ These three manual cases are enough for this lesson. Share your enum, changed st
 
 1. Why is `ReviewStatus` more useful than `confirmed: bool` for this workflow?
 2. What would happen if your match omitted the `Dismissed` arm?
+
+Next, after review: [lesson 6: collections and borrowed iteration](06-collections.md).
