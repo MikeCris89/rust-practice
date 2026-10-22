@@ -27,19 +27,35 @@ React remains a useful reference for the client/server boundary. Backend shared 
 - You identified the return type and explained that a semicolon would cause the body to return `()` instead of the comparison value. Local type inference follows the initializer's type: `is_high` is a `bool` because the called function declares `-> bool`, regardless of whether it returns true or false.
 - You said lesson 5 is done. The tutor reviewed its implementation and ran `cargo check --bin fieldwatch` and `cargo fmt --check` successfully before committing. The compiler warns that Confirmed and Dismissed are never constructed; all match arms are present. Runtime/status-case results remain unreported and were not rerun by the tutor.
 - You correctly predicted a compile-time error for a missing match arm and identified the incompatible types when one arm returns an integer instead of a string. We clarified that `ReviewStatus::Pending` is already a complete enum value, while `match` computes a separate label without changing the status. You reported understanding this explanation. `Display`, `Debug`, `#[derive(Debug)]`, and formatting versus value conversion were explained; no formatting traits have been implemented or practiced.
-- Current lesson: [lesson 6: collections and borrowed iteration](lessons/06-collections.md), with its first step complete and borrowed-loop work pending. Source enums remain a later step.
+- Next session: [lesson 7: ownership practice](lessons/07-ownership-practice.md), starting at checkpoint 1. This deliberate practice lesson also finishes lesson 6's pending borrowed-loop work. Source enums and further features remain later steps.
 - Lesson 6's vector-construction step is now implemented and reviewed: the original detection moves into `Vec<Detections>` with two new detections, at scores 92, 80, and 55, all pending. The tutor ran `cargo run --bin fieldwatch` and observed the original single-detection output followed by `Length: 3`. `cargo fmt --check` initially failed; the tutor applied formatting only, then formatting and diff whitespace checks passed. The existing unused-variant warning remains. No borrowed loops have been written, so lesson 6 is partially complete.
 - The user still finds ownership, borrowing, references, and transfers confusing and explicitly requests more practice: each relevant scenario at least once, common scenarios repeatedly. A binding (a name associated with a value) and named Rust struct construction versus TypeScript object literals were explained. Understanding of moves and borrowing has not yet been demonstrated independently.
 
 ## Handoff for the next chat
 
-- Resume after lesson 6's completed vector-construction step. Borrowed loops are still pending. Prioritize small ownership and borrowing exercises before adding features; keep application implementation learner-owned.
+- Read the source, then start lesson 7 checkpoint 1 only: ask the user to predict saving a `u8` field before moving its struct into the vector, then compare using the saved field versus the moved original afterward. Let the user write and run the experiment. The new lesson is prepared, not implemented; borrowed loops and helpers still do not exist in the source.
+- Follow lesson 7 checkpoints in order, reviewing prediction, code, output/diagnostic, and explanation before proceeding. Its intentional failing experiments are learner tasks; return to the working baseline afterward. Do not add `.clone()` or derive `Copy` to bypass a move. Do not generate the exercise solution or jump to filtering.
 - The user requests harder, Rust-specific questions rather than conventional coding/design questions. Favor reasoning about compiler checks, expression types, exhaustive matches, and later ownership/borrowing; keep questions within explained concepts. Lesson 4's verification results and code-reading answers remain unreported; do not turn them into a generic recap that blocks the current question.
 - Use TypeScript/Next.js/React/Express comparisons by default. The user asks short conceptual questions as they work; explain unfamiliar syntax before expecting them to use it.
 - Concepts already discussed: entry points, Cargo versus npm, macros (`println!`, `vec!`), `format!` versus JS template literals, immutable bindings, type annotations, semicolons and final expressions, and a high-level introduction to ownership versus garbage collection. Exposure does not imply mastery; ownership has not been practiced.
 - Structs versus TypeScript types/classes, `String` versus `&str`, `impl`/`&self` methods, and top-level definitions versus modules were explained. Struct construction, field access, and an assisted move into a vector are demonstrated in source. Methods, modules, and explicit borrows have not been practiced; the move still needs explanation and more practice.
 - The user predicted that 300 would not fit a `u8` but was unsure whether it could be saved incorrectly. We explained that the literal is rejected at compile time, that `u8` permits 0 through 255, and that the app's 0 through 100 rule needs separate validation. That understanding has not yet been reassessed.
 - The manifest/lockfile analogy and macro behavior have been explained; the remaining lesson 1 explanation checkbox can be revisited naturally, without blocking lesson 3 on a full recap.
+
+## Ownership practice record
+
+Revisit common cases in later application work. Record independent explanations and reported/observed checks as they happen; the next lesson's existence does not mark these practiced.
+
+| Scenario | Current evidence / next practice |
+| --- | --- |
+| Move into a collection or another binding | Assisted collection move exists; explanation still uncertain. Lesson 7 checkpoint 1, then repeat later. |
+| Copy a numeric field versus move an owned field | Explained, not independently demonstrated. Lesson 7 checkpoints 1 and 3. |
+| Shared references and repeated borrowed loops | Explained, no code yet. Lesson 7 checkpoints 2 and 3; repeat commonly. |
+| Borrow a field rather than move it | Explained, no experiment yet. Lesson 7 checkpoint 3. |
+| Borrow versus transfer ownership into a function | Not practiced. Lesson 7 checkpoint 4 introduces borrowed arguments and contrasts owned arguments. |
+| Owned text versus borrowed text parameters | `String`/`&str` explained; dedicated function exercise still needed later. |
+| Mutable references and overlapping-borrow restrictions | Not practiced; introduce in separate small exercises later. |
+| Return references and understand their validity | Not practiced; introduce only after basic borrowing is demonstrated. |
 
 ## Milestones
 
