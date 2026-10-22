@@ -20,6 +20,22 @@ fn main() {
     println!("Confidence: {}%", detection.confidence);
     println!("High Confidence: {}", is_high);
     println!("Review Status: {}", status_label);
+
+    let detections = vec![
+        detection,
+        Detections {
+            species: String::from("Giant hogweed"),
+            confidence: 80,
+            status: ReviewStatus::Pending,
+        },
+        Detections {
+            species: String::from("Himalayan balsam"),
+            confidence: 55,
+            status: ReviewStatus::Pending,
+        },
+    ];
+
+    println!("Length: {}", detections.len());
 }
 
 fn is_high_confidence(confidence: u8) -> bool {

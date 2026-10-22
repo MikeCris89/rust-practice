@@ -2,15 +2,13 @@
 
 Goal: store three detections in a `Vec` and read them twice without rebuilding or cloning the collection. Keep everything in `src/main.rs`.
 
-## Start from TypeScript
-
 In TypeScript, you might write:
 
 ```ts
 const names: Array<string> = ["North Marsh", "South Marsh"];
 
 for (const name of names) {
-  console.log(name);
+	console.log(name);
 }
 
 console.log(names.length);
@@ -37,10 +35,10 @@ println!("Count: {}", names.len());
 
 The TypeScript analogy stops at ownership. A JavaScript `for...of` loop leaves the array available. In Rust, these two forms make different choices:
 
-| Loop | What it does |
-| --- | --- |
-| `for name in &names` | Borrows the vector and yields a shared reference to each element |
-| `for name in names` | Consumes the vector and yields owned elements; the original binding cannot be used afterward |
+| Loop                 | What it does                                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| `for name in &names` | Borrows the vector and yields a shared reference to each element                             |
+| `for name in names`  | Consumes the vector and yields owned elements; the original binding cannot be used afterward |
 
 `&names` means shared borrowed access, without transferring ownership. In the borrowed loop, `name` has type `&String`. Once the loop's borrow ends, you can borrow the vector again or call `.len()`.
 
@@ -56,11 +54,11 @@ Your existing status match only checks variants without extracting owned data, s
 
 Keep your current single-detection code and output for now. After those print statements, but still inside `main`, create a `detections` binding with a vector containing:
 
-| Species | Confidence | Status |
-| --- | --- | --- |
-| Japanese knotweed | 92 | Pending |
-| Giant hogweed | 80 | Pending |
-| Himalayan balsam | 55 | Pending |
+| Species           | Confidence | Status  |
+| ----------------- | ---------- | ------- |
+| Japanese knotweed | 92         | Pending |
+| Giant hogweed     | 80         | Pending |
+| Himalayan balsam  | 55         | Pending |
 
 Use your existing `detection` value as the first element; construct the other two using your existing `Detections` type. Use `String::from(...)` for their species names. Let Rust infer the vector type.
 
