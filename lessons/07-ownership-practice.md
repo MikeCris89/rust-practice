@@ -1,8 +1,8 @@
 # Lesson 7: ownership practice, one case at a time
 
-Goal: explain who owns a value and what access a reference permits, using the vector you just built. This lesson also finishes lesson 6's borrowed-loop exercise. No new application features are needed.
+Goal: explain who owns a value and what access a reference permits, using the vector and borrowed loops from lesson 6. No new application features are needed.
 
-Your starting code prints one detection, moves it into a vector with two more, and prints `Length: 3`. The loops have not been implemented. Work through one checkpoint at a time with the tutor; do not implement the whole document in one pass.
+Complete and review lesson 6 before starting this lesson. Your starting code should construct a vector with three detections, read it with two borrowed loops, and print its length. Work through one checkpoint at a time with the tutor; do not implement the whole document in one pass.
 
 ## The three distinctions to practice
 
@@ -46,13 +46,13 @@ Before running, explain which binding owns the vector and what value each view b
 
 ## Checkpoint 3: borrow the collection twice
 
-Now finish lesson 6's loop step. Keep the startup messages outside the loops.
+Revisit lesson 6's completed loops. Keep the startup messages outside the loops.
 
-Move your per-detection `is_high` and `status_label` calculations and four detection print statements into a loop after vector construction. Use `for detection in &detections`. Each loop variable has type `&Detections`; the original binding used to construct the first element and this loop variable are separate bindings, even though they have the same name.
+Locate the per-detection `is_high` and `status_label` calculations and four detection print statements inside your first `for detection in &detections` loop. Each loop variable has type `&Detections`; the original binding used to construct the first element and this loop variable are separate bindings, even though they have the same name.
 
 Inside the loop, read the fields with dot syntax. Passing `detection.confidence` to your existing helper copies a `u8`. Formatting `detection.species` in `println!` borrows the text. Your match only inspects status variants without extracting owned data, so it can remain as written.
 
-Add a second borrowed loop that prints each species, then print the vector's length after both loops. Expect all three detections at scores 92, 80, and 55, with high-confidence results true, true, and false, and pending status throughout. Expect all three species again and a final length of 3.
+Check that your second loop also borrows the vector and prints each species, and that the vector's length is printed after both loops. Expect all three detections at scores 92, 80, and 55, with high-confidence results true, true, and false, and pending status throughout. Expect all three species again and a final length of 3.
 
 After the working version is reviewed, predict what happens if only the first loop uses `detections` instead of `&detections`. Try that single change with `cargo check --bin fieldwatch`, identify which later uses fail, and explain what was consumed. Restore the borrowed loop after the experiment.
 

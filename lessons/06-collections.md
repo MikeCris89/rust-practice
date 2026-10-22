@@ -92,4 +92,4 @@ Share your loops and check results. Predict these changes before trying them:
 1. If you removed `&` from only the first loop, which later uses would fail to compile, and what was transferred?
 2. Inside the borrowed loop, why can `let confidence = detection.confidence` compile while `let species = detection.species` cannot? Name the types involved and connect the difference to `Copy` and borrowed access.
 
-Current handoff: the vector-construction step is complete; borrowed loops are still pending. Continue with [lesson 7: ownership practice](07-ownership-practice.md) for smaller ownership exercises and guided completion of those loops.
+Current handoff: the vector and both borrowed loops are implemented and checked. `Copy`, shared references, and owned-field moves have been discussed; understanding is still developing. Continue with [lesson 7: ownership practice](07-ownership-practice.md) to reinforce them through small exercises.

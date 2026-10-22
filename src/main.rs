@@ -8,19 +8,6 @@ fn main() {
         status: ReviewStatus::Pending,
     };
 
-    let is_high = is_high_confidence(detection.confidence);
-
-    let status_label = match detection.status {
-        ReviewStatus::Pending => "Pending",
-        ReviewStatus::Confirmed => "Confirmed",
-        ReviewStatus::Dismissed => "Dismissed",
-    };
-
-    println!("Species: {}", detection.species);
-    println!("Confidence: {}%", detection.confidence);
-    println!("High Confidence: {}", is_high);
-    println!("Review Status: {}", status_label);
-
     let detections = vec![
         detection,
         Detections {
@@ -35,7 +22,28 @@ fn main() {
         },
     ];
 
-    println!("Length: {}", detections.len());
+    for detection in &detections {
+        let is_high = is_high_confidence(detection.confidence);
+        let species = &detection.species;
+        let conf = detection.confidence;
+
+        let status_label = match detection.status {
+            ReviewStatus::Pending => "Pending",
+            ReviewStatus::Confirmed => "Confirmed",
+            ReviewStatus::Dismissed => "Dismissed",
+        };
+
+        println!("Species: {}", detection.species);
+        println!("Confidence: {}%", detection.confidence);
+        println!("High Confidence: {}", is_high);
+        println!("Review Status: {}", status_label);
+    }
+
+    for detection in &detections {
+        println!("Species Name: {}", detection.species);
+    }
+
+    println!("Total detections: {}", detections.len());
 }
 
 fn is_high_confidence(confidence: u8) -> bool {
